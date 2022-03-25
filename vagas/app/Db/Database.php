@@ -13,10 +13,12 @@ class Database
     const HOST = '127.0.0.1';
 
     // NOME DO BANCO DE DADOS
-    const NAME = 'dev_vagas';
+    const NAME = 'storeBook';
 
     // USUÁRIO DO BANCO DE DADOS
-    const USER = 'root';
+    const USER = 'cayque';
+
+    const PASSWORD = '1234';
 
     // NOME DA TABELA A SER MANIPULADA
     private $table;
@@ -36,8 +38,8 @@ class Database
     {
         try
         {
-            $this->connection = new PDO('mysql:host='.self::HOST.';dbname='.self::NAME,self::USER,'');
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);  # <-- Configuração de PDO caso alguma coisa não sai como esperado no momento da conexão com o banco de dados. 
+            $this->connection = new PDO('mysql:host='.self::HOST.';dbname='.self::NAME,self::USER,self::PASSWORD);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);  # <-- Configuração de PDO caso alguma coisa não saia como esperado no momento da conexão com o banco de dados. 
         }catch(PDOException $e)
         {
             die('ERROR: '.$e->getMessage());

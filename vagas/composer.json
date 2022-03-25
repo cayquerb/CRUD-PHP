@@ -1,5 +1,5 @@
 {
-    "name":"dev/vagas",
+    "name":"dev/books",
     "autoload": {
         "psr-4": {
             "App\\":"app/"

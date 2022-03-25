@@ -14,19 +14,27 @@
     }
 
     $resultados = '';
-    foreach($vagas as $vaga) {
+    foreach($livros as $livro) {
         $resultados .= 
             '<tr>  
-                <td>'.$vaga->id.'</td>
-                <td>'.$vaga->titulo.'</td>
-                <td>'.$vaga->descricao.'</td>
-                <td>'.($vaga->ativo === 'Y' ? 'Ativo' : 'Inativo').'</td>
-                <td>'.date('d/m/y à\s H:i:s', strtotime($vaga->data)).'</td>
+                <td>'.$livro->id.'</td>
+                <td>'.$livro->codigo.'</td>
+                <td>'.$livro->titulo.'</td>
+                <td>'.$livro->autor.'</td>
+                <td>'.$livro->sinopse.'</td>
+                <td>'.($livro->ativo === 'Y' ? 'Dura' : 'Cartonada').'</td>
+                <td>'.$livro->valor.'</td>
+                <td>'.$livro->isnb.'</td>
+
+
+
+               
+                <td>'.date('d/m/y à\s H:i:s', strtotime($livro->data)).'</td>
                 <td>
-                    <a href="editar.php?id= '.$vaga->id.'">
+                    <a href="editar.php?id= '.$livro->id.'">
                         <button type="button" class="btn btn-primary">Editar</button>
                     </a>
-                    <a href="excluir.php?id= '.$vaga->id.'">
+                    <a href="excluir.php?id= '.$livro->id.'">
                         <button type="button" class="btn btn-danger">Excluir</button>
                     </a>
                 </td>
@@ -35,8 +43,8 @@
 
     $resultados = strlen($resultados) ? $resultados : 
         '<tr>
-            <td colspan="6" class="text-center">Nenhuma vaga encontrada</td> 
-        </tr>'; # <-- colspan remete a quantidade de colunas na tabelas, foi definido 6 para ficar ao centro do card.
+            <td colspan="9" class="text-center">Nenhum livro encontrado</td> 
+        </tr>'; # <-- colspan remete a quantidade de colunas na tabelas, foi definido 8 para ficar ao centro do card.
     
     // GETS
     unset($_GET['status']);
@@ -59,7 +67,7 @@
     <?=$mensagem?>
     <section>
         <a href="cadastrar.php">
-            <button class="btn btn-success">Nova Vaga</button>
+            <button class="btn btn-success">Novo livro</button>
         </a>
     </section>
 
@@ -73,11 +81,11 @@
                 </div>
 
                 <div class="col-2">
-                    <label class="mb-1">Status</label>
-                    <select name="filtroStatus" class="form-select" id="">
-                        <option value="">Ativa/Inativa</option>
-                        <option value="Y" <?= $filtroStatus == 'Y' ? 'selected' : '' ?>>Ativa</option>
-                        <option value="N" <?= $filtroStatus == 'N' ? 'selected' : '' ?>>Inativa</option>
+                    <label class="mb-1">Tipo de Capa</label>
+                    <select name="filtroCapa" class="form-select" id="">
+                        <option value="">Dura/Cartonada</option>
+                        <option value="Y" <?= $filtroStatus == 'Y' ? 'selected' : '' ?>>Dura</option>
+                        <option value="N" <?= $filtroStatus == 'N' ? 'selected' : '' ?>>Cartonada</option>
                     </select>
                 </div>
 
@@ -94,9 +102,13 @@
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
+                    <th>Código do Livro</th>
                     <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Status</th>
+                    <th>Autor</th>
+                    <th>Sinopse</th>
+                    <th>Tipo de Capa</th>
+                    <th>Valor</th>
+                    <th>ISBN</th>
                     <th>Data</th>
                     <th>Ações</th>
                 </tr>

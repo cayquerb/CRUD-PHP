@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-use \App\Entity\Vaga;
+use \App\Entity\Livro;
 use \App\Session\Login;
 
 // OBRIGA O USUÁRIO A LOGAR COM SUA CONTA
@@ -15,11 +15,11 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id']))
     exit;
 }
 
-// CONSULTA A VAGA
-$obVaga = Vaga::getVaga($_GET['id']);
+// CONSULTA O LIVRO
+$obLivro = Livro::getLivro($_GET['id']);
 
-// VALIDAÇÃO DA VAGA
-if(!$obVaga instanceof Vaga)
+// VALIDAÇÃO DO LIVRO
+if(!$obLivro instanceof Livro   )
 {
     header('location: index.php?status=error');
     exit;
@@ -28,7 +28,7 @@ if(!$obVaga instanceof Vaga)
 // VALIDAÇÃO DO POST
 if(isset($_POST['excluir']))
 {
-    $obVaga->excluir();
+    $obLivro->excluir();
     header('location: index.php?status=success');
     exit;
 }

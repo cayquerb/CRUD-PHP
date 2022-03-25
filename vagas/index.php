@@ -4,7 +4,7 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-use \App\Entity\Vaga;
+use \App\Entity\Livro;
 use \App\Db\Pagination;
 use \App\Session\Login;
 
@@ -14,7 +14,7 @@ Login::requireLogin();
 // BUSCA 
 $busca = filter_input(INPUT_GET, 'busca', FILTER_SANITIZE_STRING); # <-- Método responsavel por validar as pesquisas, impede sql injection atraves do  FILTER_SANITIZE_STRING.
 
-// FILTRO DE STATUS
+// FILTRO DE CAPA
 $filtroStatus = filter_input(INPUT_GET, 'filtroStatus', FILTER_SANITIZE_STRING); # <-- Faz a validação do status.
 $filtroStatus = in_array($filtroStatus, ['Y','N']) ? $filtroStatus : '';   # <-- Retorna somente true ou false, impedindo injetar outros valores.
 
@@ -32,14 +32,14 @@ $condicoes = array_filter($condicoes);
 $where = implode(' AND ',$condicoes); # <-- O função implode pode transformar arrays em strings. 
                                       # <-- AND é o operador dos arrays, ele vai definir as conexões das buscas.
 
-// QUANTIDADE TOTAL DE VAGAS
-$quantidadeVagas = Vaga::getQuantidadeVagas($where);
+// QUANTIDADE TOTAL DE LIVROS
+$quantidadeLivros = Livro::getQuantidadeLivros($where);
 
 // PAGINAÇÃO
-$obPagination = new Pagination($quantidadeVagas, $_GET['pagina'] ?? 1, 5);
+$obPagination = new Pagination($quantidadeLivros, $_GET['pagina'] ?? 1, 5);
 
-// OBTÉM AS VAGAS
-$vagas = Vaga::getVagas($where, null, $obPagination->getLimit());
+// OBTÉM OS LIVROS
+$livros = Livro::getLivros($where, null, $obPagination->getLimit());
 
 include __DIR__.'/Includes/header.php';
 include __DIR__.'/Includes/listagem.php';

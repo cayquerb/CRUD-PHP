@@ -1,9 +1,9 @@
 <main>
-    <h2 class="mt-3">Excluir Vaga</h2>
+    <h2 class="mt-3">Excluir Livro</h2>
     <form method="post">
 
         <div class="form-group">
-           <p>Deseja realment excluir a vaga <strong><?=$obVaga->titulo?></strong>?</p>
+           <p>Deseja realmente excluir o livro <strong><?=$obLivro->titulo?></strong>?</p>
         </div>
         
         <div class="form-group mt-3">
